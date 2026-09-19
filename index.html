@@ -325,7 +325,6 @@
                 </h2>
                 <span class="text-amber-800/60 text-lg">❊</span>
               </div>
-              <p id="timing-note" class="text-xs text-stone-500 font-sans mt-0.5">تقال بعد صلاة الفجر إلى شروق الشمس</p>
             </div>
 
             <!-- Dhikr Main Body (Scrollable with custom font size) -->
@@ -985,6 +984,10 @@
         if (parsed.morning && parsed.morning.length === morningAdhkar.length &&
             parsed.evening && parsed.evening.length === eveningAdhkar.length) {
           countsState = parsed;
+          if (!localStorage.getItem('hisn_morning_first_dhikr_repaired')) {
+            countsState.morning[0] = morningAdhkar[0].repeat;
+            localStorage.setItem('hisn_morning_first_dhikr_repaired', '1');
+          }
         }
       } else {
         // Fresh start: all repetitions set to their default counts
@@ -1062,7 +1065,6 @@
     const dhikrVirtueEl = document.getElementById('dhikr-virtue');
     const dhikrSourceEl = document.getElementById('dhikr-source');
     const categoryTitleEl = document.getElementById('category-title');
-    const timingNoteEl = document.getElementById('timing-note');
     const dhikrIndexTextEl = document.getElementById('dhikr-index-text');
     const targetCountTextEl = document.getElementById('target-count-text');
     const counterValueEl = document.getElementById('counter-value');
@@ -1151,7 +1153,6 @@
       // Title & Text
       headerCategoryName.textContent = currentCategory === 'morning' ? 'أَذْكارُ الصَّباحِ' : 'أَذْكارُ المَساءِ';
       categoryTitleEl.textContent = currentCategory === 'morning' ? 'أَذْكارُ الصَّباحِ' : 'أَذْكارُ المَساءِ';
-      timingNoteEl.textContent = currentCategory === 'morning' ? 'تقال بعد صلاة الفجر إلى شروق الشمس' : 'تقال بعد صلاة العصر إلى غروب الشمس وما بعده';
 
       // Format text with clean line spacing between surahs/paragraphs
       if (currentDhikr.text.includes('\n\n')) {
