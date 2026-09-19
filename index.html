@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+  <meta name="theme-color" content="#3D0D11"/>
+  <title>حصن المسلم - أذكار الصباح والمساء</title>
+  
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Scheherazade+New:wght@400;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            maroon: {
+              700: '#6B1B22',
+              800: '#521419',
+              900: '#3D0D11',
+              950: '#2A0609',
+            },
+            parchment: {
+              50: '#FCFAF5',
+              100: '#F7F2E7',
+              200: '#EFE7D5',
+              300: '#E3D7BE',
+              400: '#D5C4A1',
+            },
+            gold: {
+              400: '#DFB758',
+              500: '#C29B38',
+              600: '#A47D22',
+              700: '#836115',
+            }
+          },
+          fontFamily: {
+            quran: ['"Scheherazade New"', 'Amiri', 'serif'],
+            naskh: ['Amiri', 'serif'],
+            ruqaa: ['"Aref Ruqaa"', 'serif'],
+            sans: ['Tajawal', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    /* Arabesque patterned backgrounds */
+    .bg-arabesque {
+      background-color: #3D0D11;
+      background-image: radial-gradient(#5b181e 1.2px, transparent 1.2px), radial-gradient(#5b181e 1.2px, #3D0D11 1.2px);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 10px;
+    }
+
+    .bg-arabesque-night {
+      background-color: #1a162b;
+      background-image: radial-gradient(#2d2448 1.2px, transparent 1.2px), radial-gradient(#2d2448 1.2px, #1a162b 1.2px);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 10px;
+    }
+
+    .paper-card {
+      box-shadow: 0 12px 30px -6px rgba(45, 15, 10, 0.2), 0 4px 10px -2px rgba(45, 15, 10, 0.08);
+    }
+
+    .spiral-ring {
+      width: 10px;
+      height: 28px;
+      background: linear-gradient(135deg, #f8fafc 0%, #64748b 45%, #94a3b8 70%, #1e293b 100%);
+      border-radius: 9999px;
+      box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.35);
+      position: relative;
+    }
+    .spiral-ring::before {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 2px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .dashed-box {
+      border: 1.5px dashed #C3B49B;
+    }
+    .dashed-gold {
+      border: 1px dashed rgba(212, 175, 55, 0.55);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C3B49B;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #A47D22;
+    }
+
+    /* Smooth page fade transition */
+    .fade-enter {
+      animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Button Pulse animation on complete */
+    @keyframes pulse-gold {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); box-shadow: 0 0 20px rgba(223, 183, 88, 0.7); }
+    }
+    .pulse-success {
+      animation: pulse-gold 0.4s ease-in-out;
+    }
+  </style>
+</head>
+
+<body class="bg-stone-900 text-stone-800 font-sans min-h-screen flex flex-col justify-between select-none antialiased max-w-lg mx-auto relative overflow-x-hidden shadow-2xl">
+
+  <!-- ==================== VIEW 1: HOME MAIN MENU ==================== -->
+  <div id="home-view" class="flex-1 flex flex-col justify-between p-4 bg-parchment-200 min-h-screen overflow-y-auto fade-enter">
+    
+    <!-- Home Header -->
+    <div class="text-center pt-3 pb-4">
+      <div class="inline-block p-2.5 rounded-3xl bg-arabesque text-amber-100 border border-amber-900/70 shadow-2xl mb-2 w-full max-w-sm">
+        <div class="flex items-center justify-between px-3 pt-1 pb-2 border-b border-amber-900/50">
+          <button id="home-open-settings" class="p-1.5 hover:bg-white/10 rounded-full text-amber-200 active:scale-95" title="الإعدادات">
+            <i data-lucide="sliders-horizontal" class="w-5 h-5"></i>
+          </button>
+          <div class="flex items-center gap-1">
+            <span class="text-gold-400 text-base">❊</span>
+            <span class="text-xs font-bold text-amber-300 font-sans">الوِرْدُ اليَوْمِيُّ</span>
+            <span class="text-gold-400 text-base">❊</span>
+          </div>
+          <button id="home-open-index" class="p-1.5 hover:bg-white/10 rounded-full text-amber-200 active:scale-95" title="فهرس الأذكار">
+            <i data-lucide="book-open" class="w-5 h-5"></i>
+          </button>
+        </div>
+        
+        <h1 class="text-3xl font-bold font-naskh tracking-wide text-amber-100 pt-3 pb-1 flex items-center justify-center gap-2 drop-shadow-md">
+          <span class="text-gold-400 text-xl">﴿</span>
+          <span>حِصْنُ المُسْلِم</span>
+          <span class="text-gold-400 text-xl">﴾</span>
+        </h1>
+        <p class="text-[11.5px] text-amber-300/80 font-sans pb-1">مِنْ أَذْكَارِ الكِتَابِ وَالسُّنَّةِ الْمَأْثُورَةِ</p>
+      </div>
+      <p class="text-stone-600 text-xs font-medium font-sans mt-2">اختر الورد للمتابعة والتسبيح التفاعلي</p>
+    </div>
+
+    <!-- The 2 Main Choice Cards -->
+    <div class="space-y-4 my-auto max-w-sm mx-auto w-full py-2">
+      
+      <!-- Morning Adhkar Card Button -->
+      <div id="btn-select-morning" class="cursor-pointer group relative overflow-hidden bg-gradient-to-b from-white via-parchment-50 to-parchment-100 rounded-2xl border-2 border-amber-700/40 p-4 sm:p-5 shadow-xl active:scale-[0.98] transition-all duration-200 hover:border-amber-600 hover:shadow-2xl">
+        <div class="flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3.5">
+            <div class="w-13 h-13 p-3 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-transform">
+              <i data-lucide="sun" class="w-7 h-7 text-amber-100"></i>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold font-quran text-stone-900 leading-tight">أَذْكَارُ الصَّبَاحِ</h2>
+              <p class="text-xs text-stone-500 font-sans mt-0.5">بعد الفجر إلى شروق الشمس</p>
+            </div>
+          </div>
+          <span class="px-2.5 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 font-bold text-xs">٢٤ ذكراً</span>
+        </div>
+
+        <!-- Morning Progress Bar -->
+        <div class="mt-4 pt-3 border-t border-stone-200 flex items-center justify-between gap-3">
+          <div class="flex-1 bg-stone-200 h-2.5 rounded-full overflow-hidden border border-stone-300">
+            <div id="home-morning-bar" class="h-full bg-gradient-to-l from-amber-600 to-amber-500 transition-all duration-300" style="width: 0%"></div>
+          </div>
+          <span id="home-morning-text" class="text-xs font-bold font-naskh text-amber-900">٠ / ٢٤</span>
+          <div class="px-3.5 py-1.5 bg-gradient-to-r from-amber-700 to-maroon-900 text-amber-100 rounded-xl text-xs font-bold shadow-md flex items-center gap-1 group-hover:brightness-110">
+            <span>ابدأ</span>
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Evening Adhkar Card Button -->
+      <div id="btn-select-evening" class="cursor-pointer group relative overflow-hidden bg-gradient-to-b from-white via-parchment-50 to-parchment-100 rounded-2xl border-2 border-amber-700/40 p-4 sm:p-5 shadow-xl active:scale-[0.98] transition-all duration-200 hover:border-amber-600 hover:shadow-2xl">
+        <div class="flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3.5">
+            <div class="w-13 h-13 p-3 rounded-2xl bg-gradient-to-br from-amber-800 to-maroon-950 flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-transform">
+              <i data-lucide="moon" class="w-7 h-7 text-amber-200"></i>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold font-quran text-stone-900 leading-tight">أَذْكَارُ المَسَاءِ</h2>
+              <p class="text-xs text-stone-500 font-sans mt-0.5">بعد العصر إلى ما بعد الغروب</p>
+            </div>
+          </div>
+          <span class="px-2.5 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 font-bold text-xs">٢٤ ذكراً</span>
+        </div>
+
+        <!-- Evening Progress Bar -->
+        <div class="mt-4 pt-3 border-t border-stone-200 flex items-center justify-between gap-3">
+          <div class="flex-1 bg-stone-200 h-2.5 rounded-full overflow-hidden border border-stone-300">
+            <div id="home-evening-bar" class="h-full bg-gradient-to-l from-amber-700 to-maroon-900 transition-all duration-300" style="width: 0%"></div>
+          </div>
+          <span id="home-evening-text" class="text-xs font-bold font-naskh text-amber-900">٠ / ٢٤</span>
+          <div class="px-3.5 py-1.5 bg-gradient-to-r from-amber-700 to-maroon-900 text-amber-100 rounded-xl text-xs font-bold shadow-md flex items-center gap-1 group-hover:brightness-110">
+            <span>ابدأ</span>
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Home Quick Footer -->
+    <div class="pt-4 pb-2 text-center text-xs text-stone-500 flex items-center justify-center gap-4">
+      <button id="home-share-app" class="flex items-center gap-1 text-amber-900 font-bold hover:underline">
+        <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+        <span>مشاركة التطبيق</span>
+      </button>
+      <span>•</span>
+      <button id="home-reset-all" class="flex items-center gap-1 text-amber-900 font-bold hover:underline">
+        <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+        <span>تصفير العدادات</span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- ==================== VIEW 2: DHIKR READING SCREEN ==================== -->
+  <div id="dhikr-view" class="flex-1 flex-col justify-between hidden min-h-screen">
+    
+    <!-- Compact Dhikr Header (Without any bulky tabs) -->
+    <header id="main-header" class="bg-arabesque text-amber-100 px-3.5 py-2.5 border-b border-amber-900/50 shadow-md relative z-30 flex items-center justify-between transition-colors duration-300">
+      
+      <!-- Back to Home Menu Button -->
+      <button id="back-to-home-btn" class="flex items-center gap-1 py-1 px-2.5 rounded-xl bg-white/10 hover:bg-white/20 active:scale-95 transition-all text-amber-200 text-xs font-bold border border-amber-500/30 shadow-sm" title="الرجوع للقائمة الرئيسية">
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        <span>الرئيسية</span>
+      </button>
+
+      <!-- Current Category Title & Mini Progress in Header -->
+      <div class="text-center cursor-pointer" id="header-title-btn">
+        <h1 id="header-category-name" class="text-lg font-bold font-naskh text-amber-100 tracking-wide flex items-center justify-center gap-1.5">
+          <span>أَذْكارُ الصَّباحِ</span>
+        </h1>
+        <div class="flex items-center justify-center gap-1.5 mt-0.5">
+          <div class="w-20 bg-black/40 h-1.5 rounded-full overflow-hidden border border-amber-500/20">
+            <div id="overall-progress-bar" class="h-full bg-gradient-to-l from-gold-400 to-amber-500 transition-all duration-300" style="width: 0%"></div>
+          </div>
+          <span id="overall-progress-text" class="text-[10px] text-amber-300 font-mono">0/24</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center space-x-1 space-x-reverse">
+        <button id="open-index-btn" aria-label="فهرس الأذكار" class="p-1.5 hover:bg-white/10 rounded-full transition-colors text-amber-200 active:scale-95" title="فهرس الأذكار">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+        <button id="open-settings-btn" aria-label="الإعدادات" class="p-1.5 hover:bg-white/10 rounded-full transition-colors text-amber-200 active:scale-95" title="خيارات القراءة">
+          <i data-lucide="sliders-horizontal" class="w-5 h-5"></i>
+        </button>
+        <button id="reset-category-btn" aria-label="إعادة تعيين العدادات" class="p-1.5 hover:bg-white/10 rounded-full transition-colors text-amber-200 active:scale-95" title="إعادة تعيين">
+          <i data-lucide="rotate-ccw" class="w-5 h-5"></i>
+        </button>
+        <button id="share-dhikr-btn" aria-label="مشاركة الذكر" class="p-1.5 hover:bg-white/10 rounded-full transition-colors text-amber-200 active:scale-95" title="مشاركة الذكر">
+          <i data-lucide="share-2" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+    </header>
+
+    <!-- Main Parchment Content Card -->
+    <main class="flex-1 px-3 py-3 flex flex-col justify-start relative z-10 bg-parchment-200">
+      <div class="relative w-full bg-parchment-50 rounded-2xl paper-card border border-stone-300/80 flex flex-col overflow-hidden pb-3">
+        
+        <!-- Spiral Rings Strip -->
+        <div class="w-full bg-stone-200/90 py-1.5 px-3 flex justify-between items-center border-b border-stone-300 relative shadow-inner">
+          <div class="flex items-center justify-around w-full px-1">
+            <div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div>
+            <div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div>
+            <div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div>
+            <div class="spiral-ring"></div><div class="spiral-ring"></div><div class="spiral-ring"></div>
+          </div>
+        </div>
+
+        <!-- Inner Folio Card (Clickable for Tasbih / Counting) -->
+        <div class="p-3 sm:p-4">
+          <div id="dhikr-card-touch" class="dashed-box rounded-xl p-4 sm:p-5 flex flex-col min-h-[380px] sm:min-h-[420px] justify-between bg-gradient-to-b from-white/80 to-parchment-50 relative cursor-pointer active:brightness-95 transition-all select-none group" title="اضغط في أي مكان على البطاقة للتسبيح">
+            
+            <!-- Top Floating Actions & Mini Counter -->
+            <div class="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
+              <button id="copy-text-btn" aria-label="نسخ النص" title="نسخ نص الذكر" class="pointer-events-auto p-1.5 text-stone-400 hover:text-stone-700 bg-white/80 hover:bg-white rounded-lg transition-colors border border-stone-200 shadow-sm active:scale-90">
+                <i data-lucide="copy" class="w-4 h-4"></i>
+              </button>
+              <div id="card-mini-counter" class="pointer-events-auto px-2.5 py-0.5 rounded-full bg-amber-900/10 border border-amber-900/20 text-amber-900 font-bold text-xs flex items-center gap-1 shadow-sm">
+                <span class="text-[10px] opacity-70">المتبقي:</span>
+                <span id="card-mini-count-val" class="font-naskh text-sm">١</span>
+              </div>
+            </div>
+
+            <!-- Category & Timing Header -->
+            <div class="text-center pt-5 pb-2">
+              <div class="inline-flex items-center justify-center gap-2">
+                <span class="text-amber-800/60 text-lg">❊</span>
+                <h2 id="category-title" class="text-2xl font-bold font-quran text-stone-800 tracking-normal px-2">
+                  أَذْكارُ الصَّباحِ
+                </h2>
+                <span class="text-amber-800/60 text-lg">❊</span>
+              </div>
+              <p id="timing-note" class="text-xs text-stone-500 font-sans mt-0.5">تقال بعد صلاة الفجر إلى شروق الشمس</p>
+            </div>
+
+            <!-- Dhikr Main Body (Scrollable with custom font size) -->
+            <div id="dhikr-container" class="my-auto py-2 text-center max-h-[230px] sm:max-h-[260px] overflow-y-auto px-2 fade-enter">
+              <blockquote id="dhikr-text" class="text-[20px] leading-[2.1] font-quran font-semibold text-stone-900 transition-all duration-150">
+                <!-- سيتم تحميل نص الذكر هنا -->
+              </blockquote>
+            </div>
+
+            <!-- Decorative Divider -->
+            <div class="relative my-2.5 flex items-center justify-center">
+              <div class="border-t border-dashed border-stone-300 w-full"></div>
+              <span class="bg-parchment-50 px-3 text-stone-400 text-sm">۞</span>
+            </div>
+
+            <!-- Sanad / Virtue / Source Information -->
+            <div id="sanad-container" class="text-stone-600 font-naskh text-[13.5px] leading-relaxed text-center px-1 space-y-1 fade-enter">
+              <p id="dhikr-virtue" class="text-amber-900 font-medium"></p>
+              <p id="dhikr-source" class="text-stone-500 text-xs leading-5"></p>
+            </div>
+
+            <!-- Tap to count subtle guide at the bottom of the card -->
+            <div class="text-center mt-1">
+              <span class="text-[10px] text-amber-900/50 font-sans">✦ المس في أي مكان للتسبيح ✦</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer Counter & Navigation -->
+    <footer id="main-footer" class="bg-gradient-to-t from-maroon-950 via-maroon-900 to-maroon-900 text-stone-100 pt-3 pb-5 px-4 shadow-[0_-8px_20px_rgba(0,0,0,0.35)] relative z-20 rounded-t-3xl border-t border-amber-600/30 transition-colors duration-300">
+      
+      <div class="max-w-md mx-auto relative flex items-center justify-between my-1">
+        
+        <!-- Target Repeat Badge -->
+        <div class="flex-1 text-center bg-maroon-950/80 py-2.5 px-2 rounded-xl dashed-gold shadow-inner">
+          <span class="block text-[11px] text-amber-300/80 font-sans mb-0.5">التَّكْرَار الْمَطْلُوب</span>
+          <span id="target-count-text" class="text-sm font-bold font-quran text-amber-100">مَرَّةً وَاحِدَةً</span>
+        </div>
+
+        <!-- Main Interactive Tasbih Counter Button -->
+        <div class="relative -top-4 mx-3 z-10 flex flex-col items-center">
+          <button id="counter-btn" type="button" class="w-20 h-20 p-2 rounded-full bg-gradient-to-b from-parchment-50 to-parchment-200 border-4 border-amber-600/80 shadow-[0_8px_20px_rgba(0,0,0,0.5)] flex items-center justify-center relative active:scale-95 transition-transform duration-100 focus:outline-none ring-4 ring-maroon-900 select-none cursor-pointer">
+            <svg class="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewbox="0 0 100 100">
+              <circle cx="50" cy="50" r="44" fill="transparent" stroke="#d6d3d1" stroke-width="4.5"></circle>
+              <circle id="progress-circle" cx="50" cy="50" r="44" fill="transparent" stroke="#9A1B22" stroke-width="5.5" stroke-dasharray="276.4" stroke-dashoffset="0" stroke-linecap="round" class="transition-all duration-200"></circle>
+            </svg>
+            <span id="counter-value" class="text-2xl font-extrabold font-naskh text-stone-900 z-10 select-none">
+              ١
+            </span>
+          </button>
+          <span id="counter-hint" class="text-[11px] font-sans text-amber-200/90 mt-1 font-medium tracking-wide">انقر للتسبيح</span>
+        </div>
+
+        <!-- Current Dhikr Index Badge -->
+        <div class="flex-1 text-center bg-maroon-950/80 py-2.5 px-2 rounded-xl dashed-gold shadow-inner">
+          <span class="block text-[11px] text-amber-300/80 font-sans mb-0.5">رَقْمُ الذِّكْر</span>
+          <span id="dhikr-index-text" class="text-sm font-bold font-naskh text-amber-100">الذِّكْرُ ١ مِنْ ٢٤</span>
+        </div>
+
+      </div>
+
+      <!-- Navigation Control Bar (Previous / Next / Auto-Play / Fast Step) -->
+      <div class="flex items-center justify-between pt-2.5 mt-1 border-t border-maroon-800/80 text-amber-200/90 text-xs px-2">
+        
+        <button id="prev-btn" class="flex items-center gap-1.5 hover:text-amber-100 py-2 px-3.5 rounded-lg transition-all bg-white/5 hover:bg-white/10 active:scale-95">
+          <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          <span class="font-bold">السابق</span>
+        </button>
+
+        <!-- Quick Jump / Auto-Advance Toggle -->
+        <button id="auto-advance-toggle" class="flex items-center gap-1.5 text-[11px] py-1.5 px-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-300 hover:bg-amber-500/20 transition-colors">
+          <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+          <span id="auto-advance-label">الانتقال التلقائي: مفعّل</span>
+        </button>
+
+        <button id="next-btn" class="flex items-center gap-1.5 hover:text-amber-100 py-2 px-3.5 rounded-lg transition-all bg-white/5 hover:bg-white/10 active:scale-95">
+          <span class="font-bold">التالي</span>
+          <i data-lucide="chevron-left" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+    </footer>
+
+  </div>
+
+  <!-- ==================== INDEX / DRAWER MODAL ==================== -->
+  <div id="index-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden transition-opacity flex justify-end">
+    <div class="w-full max-w-md bg-parchment-100 h-full flex flex-col shadow-2xl border-r border-amber-900/40 transform transition-transform duration-300 translate-x-full" id="index-drawer">
+      
+      <!-- Drawer Header -->
+      <div class="bg-arabesque p-4 text-amber-100 flex items-center justify-between border-b border-amber-900/60">
+        <div class="flex items-center gap-2">
+          <i data-lucide="book-open" class="w-5 h-5 text-gold-400"></i>
+          <h3 class="text-lg font-bold font-naskh">فهرس الأذكار</h3>
+        </div>
+        <button id="close-index-btn" class="p-1.5 hover:bg-white/10 rounded-full text-amber-200">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <!-- Search in Dhikr -->
+      <div class="p-3 bg-parchment-200 border-b border-stone-300">
+        <div class="relative">
+          <i data-lucide="search" class="w-4 h-4 text-stone-500 absolute right-3 top-3"></i>
+          <input id="search-input" type="text" placeholder="بحث في نصوص الأذكار أو الفضائل..." class="w-full pl-3 pr-9 py-2 bg-white rounded-xl border border-stone-300 text-sm focus:outline-none focus:ring-2 focus:ring-amber-800 text-stone-800 placeholder-stone-400"/>
+        </div>
+      </div>
+
+      <!-- Index List -->
+      <div id="index-list-container" class="flex-1 overflow-y-auto p-3 space-y-2">
+        <!-- يتم توليد عناصر الفهرس ديناميكياً هنا -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== SETTINGS MODAL ==================== -->
+  <div id="settings-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="w-full max-w-sm bg-parchment-50 rounded-2xl shadow-2xl border border-amber-900/30 overflow-hidden">
+      
+      <div class="bg-arabesque p-3.5 text-amber-100 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="settings" class="w-5 h-5 text-gold-400"></i>
+          <h3 class="text-base font-bold font-naskh">خيارات القراءة والتسبيح</h3>
+        </div>
+        <button id="close-settings-btn" class="p-1 hover:bg-white/10 rounded-full text-amber-200">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-4 space-y-4 text-stone-800 text-sm">
+        
+        <!-- Font Size Controls -->
+        <div>
+          <label class="block font-bold text-xs text-stone-600 mb-2">حجم خط نص الذكر</label>
+          <div class="flex items-center justify-between gap-2 bg-parchment-200 p-1.5 rounded-xl border border-stone-300">
+            <button id="font-decrease" class="flex-1 py-1.5 bg-white rounded-lg shadow-sm font-bold text-base hover:bg-stone-50 active:scale-95">أ-</button>
+            <span id="font-size-label" class="font-bold text-xs text-amber-900 px-2 font-mono">20px</span>
+            <button id="font-increase" class="flex-1 py-1.5 bg-white rounded-lg shadow-sm font-bold text-base hover:bg-stone-50 active:scale-95">أ+</button>
+          </div>
+        </div>
+
+        <!-- Vibration Toggle -->
+        <div class="flex items-center justify-between py-2 border-t border-stone-200">
+          <div>
+            <div class="font-bold text-xs text-stone-700">الاهتزاز عند التسبيح</div>
+            <div class="text-[11px] text-stone-500">اهتزاز لطيف للهاتف عند كل ضغطة</div>
+          </div>
+          <input type="checkbox" id="vibrate-toggle" checked class="w-5 h-5 accent-amber-800 rounded cursor-pointer"/>
+        </div>
+
+        <!-- Sound Click Toggle -->
+        <div class="flex items-center justify-between py-2 border-t border-stone-200">
+          <div>
+            <div class="font-bold text-xs text-stone-700">صوت النقر الهادئ</div>
+            <div class="text-[11px] text-stone-500">مؤثر صوتي خفيف عند كل تكرار</div>
+          </div>
+          <input type="checkbox" id="sound-toggle" checked class="w-5 h-5 accent-amber-800 rounded cursor-pointer"/>
+        </div>
+
+        <!-- Auto Advance Toggle in Settings -->
+        <div class="flex items-center justify-between py-2 border-t border-stone-200">
+          <div>
+            <div class="font-bold text-xs text-stone-700">الانتقال التلقائي للذكر التالي</div>
+            <div class="text-[11px] text-stone-500">عند إتمام عدد المرات المطلوب</div>
+          </div>
+          <input type="checkbox" id="auto-advance-setting" checked class="w-5 h-5 accent-amber-800 rounded cursor-pointer"/>
+        </div>
+
+      </div>
+
+      <div class="p-3 bg-parchment-200 border-t border-stone-300 text-center">
+        <button id="save-settings-btn" class="w-full py-2 bg-gradient-to-r from-maroon-900 to-maroon-800 text-amber-100 rounded-xl font-bold text-sm shadow-md hover:brightness-110 active:scale-98">
+          حفظ وإغلاق
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-24 left-1/2 -translate-x-1/2 bg-stone-900/90 text-amber-100 px-4 py-2 rounded-xl text-xs font-bold shadow-2xl border border-amber-500/30 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 z-50">
+    تم النسخ بنجاح
+  </div>
+
+  <!-- ==================== APPLICATION SCRIPTS & DATA ==================== -->
+  <script>
+    // Authentic Hisn Al-Muslim Data for Morning & Evening (حصن المسلم - كامل ومضبوط بالشكل والفضيلة والتخريج)
+    const morningAdhkar = [
+      {
+        id: 1,
+        title: "آية الكرسي",
+        text: "«اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ»",
+        virtue: "من قالها حين يصبح أُجير من الجن حتى يمسي، ومن قالها حين يمسي أُجير منهم حتى يصبح.",
+        source: "أخرجه الحاكم (١/٥٦٢) وصححه الألباني في صحيح الترغيب (٦٥٥)",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 2,
+        title: "المعوذات الثلاث",
+        text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ\n﴿قُلْ هُوَ اللَّهُ أَحَدٌ ۞ اللَّهُ الصَّمَدُ ۞ لَمْ يَلِدْ وَلَمْ يُولَدْ ۞ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ﴾\n\nبِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ\n﴿قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۞ مِنْ شَرِّ مَا خَلَقَ ۞ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ۞ وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۞ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ﴾\n\nبِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ\n﴿قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۞ مَلِكِ النَّاسِ ۞ إِلَهِ النَّاسِ ۞ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۞ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۞ مِنَ الْجِنَّةِ وَالنَّاسِ﴾",
+        virtue: "من قالها ثلاث مرات حين يصبح وثلاث مرات حين يمسي كَفَتْهُ مِنْ كُلِّ شَيْءٍ.",
+        source: "أخرجه أبو داود (٤/٣٢٢) والترمذي (٥/٥٦٧) وصححه الألباني",
+        repeat: 3,
+        repeatText: "ثَلَاثُ مَرَّاتٍ"
+      },
+      {
+        id: 3,
+        title: "أصبحنا وأصبح الملك لله",
+        text: "«أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَذَا الْيَوْمِ وَخَيْرَ مَا بَعْدَهُ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَذَا الْيَوْمِ وَشَرِّ مَا بَعْدَهُ، رَبِّ أَعُوذُ بِكَ مِنَ الْكَسَلِ وَسُوءِ الْكِبَرِ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ»",
+        virtue: "من أعظم أذكار الصباح في الثناء على الله وسؤاله خير اليوم والتعوذ من الكسل وعذاب القبر والنار.",
+        source: "أخرجه مسلم في صحيحه (٤/٢٠٨٨ برقم ٢٧٢٣)",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 4,
+        title: "اللهم بك أصبحنا",
+        text: "«اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ»",
+        virtue: "إقرار بتوحيد الله وتصريف الأمور والتوكل عليه في الحياة والممات والبعث.",
+        source: "أخرجه الترمذي (٥/٤٦٦) وصححه الألباني في صحيح الجامع (٦٤٢٣)",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 5,
+        title: "سيد الاستغفار",
+        text: "«اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ»",
+        virtue: "من قالها موقناً بها حين يصبح فمات من يومه قبل أن يمسي فهو من أهل الجنة، ومن قالها حين يمسي فمات دخل الجنة.",
+        source: "أخرجه البخاري في صحيحه (٧/١٥٠ برقم ٦٣٠٦)",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 6,
+        title: "اللهم إني أصبحت أشهدك",
+        text: "«اللَّهُمَّ إِنِّي أَصْبَحْتُ أُشْهِدُكَ، وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلَائِكَتَكَ، وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لَا إِلَهَ إِلَّا أَنْتَ وَحْدَكَ لَا شَرِيكَ لَكَ، وَأَنَّ مُحَمَّداً عَبْدُكَ وَرَسُولُكَ»",
+        virtue: "من قالها حين يصبح أو يمسي أربع مرات أعتقه الله من النار.",
+        source: "أخرجه أبو داود (٤/٣١٧) وحسنه الألباني وموقوفاً عند النسائي",
+        repeat: 4,
+        repeatText: "أَرْبَعُ مَرَّاتٍ"
+      },
+      {
+        id: 7,
+        title: "اللهم ما أصبح بي من نعمة",
+        text: "«اللَّهُمَّ مَا أَصْبَحَ بِي مِنْ نِعْمَةٍ أَوْ بِأَحَدٍ مِنْ خَلْقِكَ فَمِنْكَ وَحْدَكَ لَا شَرِيكَ لَكَ، فَلَكَ الْحَمْدُ وَلَكَ الشُّكْرُ»",
+        virtue: "من قالها حين يصبح فقد أدى شكر يومه، ومن قالها حين يمسي فقد أدى شكر ليلته.",
+        source: "أخرجه أبو داود (٤/٣١٨) والنسائي في عمل اليوم والليلة (٧)",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 8,
+        title: "اللهم عافني في بدني",
+        text: "«اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي، لَا إِلَهَ إِلَّا أَنْتَ. اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْكُفْرِ، وَالْفَقْرِ، وَأَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، لَا إِلَهَ إِلَّا أَنْتَ»",
+        virtue: "سؤال العافية التامة في الحواس والبدن، والتعوذ من الكفر والفقر وعذاب القبر.",
+        source: "أخرجه أبو داود (٤/٣٢٤) وأحمد (٥/٤٢) وحسنه الألباني",
+        repeat: 3,
+        repeatText: "ثَلَاثُ مَرَّاتٍ"
+      },
+      {
+        id: 9,
+        title: "حسبي الله لا إله إلا هو",
+        text: "«حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ»",
+        virtue: "من قالها سبع مرات حين يصبح وحين يمسي كفاه الله ما أهمه من أمر الدنيا والآخرة.",
+        source: "أخرجه ابن السني (٧١) وأبو داود موقوفاً (٤/٣٢١) وصححه الأرناؤوط",
+        repeat: 7,
+        repeatText: "سَبْعُ مَرَّاتٍ"
+      },
+      {
+        id: 10,
+        title: "اللهم إني أسألك العفو والعافية",
+        text: "«اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ: فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي، اللَّهُمَّ اسْتُرْ عَوْرَاتِي، وَآمِنْ رَوْعَاتِي، اللَّهُمَّ احْفَظْنِي مِنْ بَيْنِ يَدَيَّ، وَمِنْ خَلْفِي، وَعَنْ يَمِينِي، وَعَنْ شِمَالِي، وَمِنْ فَوْقِي، وَأَعُوذُ بِعَظَمَتِكَ أَنْ أُغْتَالَ مِنْ تَحْتِي»",
+        virtue: "دعاء جامع للحفظ من الجهات الست، لم يكن رسول الله ﷺ يدعه أبداً حين يصبح وحين يمسي.",
+        source: "أخرجه أبو داود (٤/٣٢٣) وابن ماجه (٢/١٢٧٣) وصححه الألباني",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 11,
+        title: "اللهم عالم الغيب والشهادة",
+        text: "«اللَّهُمَّ عَالِمَ الْغَيْبِ وَالشَّهَادَةِ فَاطِرَ السَّماوَاتِ وَالْأَرْضِ، رَبَّ كُلِّ شَيْءٍ وَمَلِيكَهُ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا أَنْتَ، أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي، وَمِنْ شَرِّ الشَّيْطَانِ وَشِرْكِهِ، وَأَنْ أَقْتَرِفَ عَلَى نَفْسِي سُوءاً، أَوْ أَجُرَّهُ إِلَى مُسْلِمٍ»",
+        virtue: "حفظ ووقاية من شرور النفس ووساوس الشيطان ومن إلحاق الضرر بالنفس أو المسلمين.",
+        source: "أخرجه الترمذي (٥/٤٦٧) وأبو داود (٤/٣١٧) وصححه الألباني",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 12,
+        title: "بسم الله الذي لا يضر مع اسمه شيء",
+        text: "«بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ»",
+        virtue: "من قالها ثلاثاً إذا أصبح وثلاثاً إذا أمسى لم يضره شيء، ولم تصبه فجأة بلاء.",
+        source: "أخرجه أبو داود (٤/٣٢٣) والترمذي (٥/٤٦٥) وصححه الألباني",
+        repeat: 3,
+        repeatText: "ثَلَاثُ مَرَّاتٍ"
+      },
+      {
+        id: 13,
+        title: "رضيت بالله رباً",
+        text: "«رَضِيتُ بِاللَّهِ رَبَّاً، وَبِالْإِسْلَامِ دِيناً، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيَّاً»",
+        virtue: "من قالها حين يصبح وحين يمسي ثلاث مرات كان حقاً على الله أن يرضيه يوم القيامة.",
+        source: "أخرجه أحمد (٤/٣٣٧) والنسائي في عمل اليوم والليلة (٤) وأبو داود",
+        repeat: 3,
+        repeatText: "ثَلَاثُ مَرَّاتٍ"
+      },
+      {
+        id: 14,
+        title: "يا حي يا قيوم برحمتك أستغيث",
+        text: "«يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ أَصْلِحْ لِي شَأْنِي كُلَّهُ وَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ»",
+        virtue: "استغاثة بصفات الله القيومية والرحمة لتولي جميع الشؤون دون الاعتماد على النفس الضعيفة.",
+        source: "أخرجه الحاكم (١/٥٤٥) وصححه الألباني في السلسلة الصحيحة (٢٢٧)",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 15,
+        title: "أصبحنا وأصبح الملك لله رب العالمين",
+        text: "«أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ رَبِّ الْعَالَمِينَ، اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ هَذَا الْيَوْمِ: فَتْحَهُ، وَنَصْرَهُ، وَنُورَهُ، وَبَرَكَتَهُ، وَهُدَاهُ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِيهِ وَشَرِّ مَا بَعْدَهُ»",
+        virtue: "سؤال خيرات اليوم الخمس: الفتح والنصر والنور والبركة والهدى، والاستعاذة من شره.",
+        source: "أخرجه أبو داود (٤/٣٢٢) وحسن إسناده ابن باز والأرناؤوط",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 16,
+        title: "أصبحنا على فطرة الإسلام",
+        text: "«أَصْبَحْنَا عَلَى فِطْرَةِ الْإِسْلَامِ، وَعَلَى كَلِمَةِ الْإِخْلَاصِ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، وَعَلَى مِلَّةِ أَبِينَا إِبْرَاهِيمَ، حَنِيفاً مُسْلِماً وَمَا كَانَ مِنَ الْمُشْرِكِينَ»",
+        virtue: "تجديد العهد على التوحيد الخالص وفطرة الإسلام وسنة النبي ﷺ وملة إبراهيم عليه السلام.",
+        source: "أخرجه أحمد (٣/٤٠٦) وابن السني (٣٤) وصححه الألباني",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 17,
+        title: "سبحان الله وبحمده",
+        text: "«سُبْحَانَ اللَّهِ وَبِحَمْدِهِ»",
+        virtue: "من قالها مائة مرة حين يصبح وحين يمسي لم يأت أحد يوم القيامة بأفضل مما جاء به إلا أحد قال مثل ما قال أو زاد عليه، وحُطّت خطاياه وإن كانت مثل زبد البحر.",
+        source: "أخرجه مسلم في صحيحه (٤/٢٠٧١ برقم ٢٦٩٢)",
+        repeat: 100,
+        repeatText: "مَائَةُ مَرَّةٍ"
+      },
+      {
+        id: 18,
+        title: "التهليل (عشر مرات)",
+        text: "«لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ»",
+        virtue: "كانت له عدل أربع رقاب من ولد إسماعيل، وكتب الله له بها عشر حسنات وحط عنه عشر سيئات.",
+        source: "أخرجه النسائي والترمذي وأبو داود وصححه الألباني",
+        repeat: 10,
+        repeatText: "عَشْرُ مَرَّاتٍ"
+      },
+      {
+        id: 19,
+        title: "التهليل (مائة مرة)",
+        text: "«لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ»",
+        virtue: "كانت له عدل عشر رقاب، وكُتبت له مائة حسنة، ومُحيت عنه مائة سيئة، وكانت له حرزاً من الشيطان يومه ذلك حتى يمسي.",
+        source: "أخرجه البخاري (٤/٩٥) ومسلم (٤/٢٠٧١)",
+        repeat: 100,
+        repeatText: "مَائَةُ مَرَّةٍ"
+      },
+      {
+        id: 20,
+        title: "سبحان الله وبحمده عدد خلقه",
+        text: "«سُبْحَانَ اللَّهِ وَبِحَمْدِهِ: عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ»",
+        virtue: "تعدل ساعات طويلة ومضاعفة من الذكر والتسبيح قالها النبي ﷺ لأم المؤمنين جويرية رضي الله عنها.",
+        source: "أخرجه مسلم في صحيحه (٤/٢٠٩٠ برقم ٢٧٢٦)",
+        repeat: 3,
+        repeatText: "ثَلَاثُ مَرَّاتٍ"
+      },
+      {
+        id: 21,
+        title: "اللهم إني أسألك علماً نافعاً",
+        text: "«اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْماً نَافِعاً، وَرِزْقاً طَيِّباً، وَعَمَلاً مُتَقَبَّلاً»",
+        virtue: "كان النبي ﷺ يقولها إذا صلى الصبح حين يسلّم؛ لسؤال أركان التوفيق اليومي.",
+        source: "أخرجه ابن ماجه (١/٢٩٨) وابن السني وصححه الألباني في صحيح ابن ماجه",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 22,
+        title: "الاستغفار والتوبة",
+        text: "«أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ»",
+        virtue: "تطهير للقلب واقتداء بالنبي ﷺ؛ فقد كان يستغفر الله ويتوب إليه في اليوم مائة مرة.",
+        source: "أخرجه البخاري ومسلم (٤/٢٠٧٥ برقم ٢٧٠٢)",
+        repeat: 100,
+        repeatText: "مَائَةُ مَرَّةٍ"
+      },
+      {
+        id: 23,
+        title: "أعوذ بكلمات الله التامات",
+        text: "«أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ»",
+        virtue: "من قالها ثلاثاً لم يضره شيء حتى يمسي (وتتأكد في المساء والنزول في أي منزل).",
+        source: "أخرجه أحمد (٢/٢٩٠) والترمذي (٣٦٠٤) وصححه الألباني",
+        repeat: 3,
+        repeatText: "ثَلَاثُ مَرَّاتٍ"
+      },
+      {
+        id: 24,
+        title: "الصلاة على النبي ﷺ",
+        text: "«اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ»",
+        virtue: "من صلى عليّ حين يصبح عشراً وحين يمسي عشراً أدركته شفاعتي يوم القيامة.",
+        source: "أخرجه الطبراني بإسنادين وحسنه الألباني في صحيح الترغيب (٦٥٦)",
+        repeat: 10,
+        repeatText: "عَشْرُ مَرَّاتٍ"
+      }
+    ];
+
+    // Authentic Hisn Al-Muslim Evening Adhkar (أذكار المساء المعتمدة في حصن المسلم)
+    const eveningAdhkar = [
+      {
+        id: 1,
+        title: "آية الكرسي",
+        text: "«اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ»",
+        virtue: "من قالها حين يمسي أُجير من الجن والشياطين حتى يصبح.",
+        source: "أخرجه الحاكم (١/٥٦٢) وصححه الألباني",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 2,
+        title: "المعوذات الثلاث",
+        text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ\n﴿قُلْ هُوَ اللَّهُ أَحَدٌ ۞ اللَّهُ الصَّمَدُ ۞ لَمْ يَلِدْ وَلَمْ يُولَدْ ۞ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ﴾\n\nبِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ\n﴿قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۞ مِنْ شَرِّ مَا خَلَقَ ۞ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ۞ وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۞ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ﴾\n\nبِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ\n﴿قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۞ مَلِكِ النَّاسِ ۞ إِلَهِ النَّاسِ ۞ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۞ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۞ مِنَ الْجِنَّةِ وَالنَّاسِ﴾",
+        virtue: "من قالها ثلاث مرات حين يصبح وثلاث مرات حين يمسي كَفَتْهُ مِنْ كُلِّ شَيْءٍ.",
+        source: "أخرجه أبو داود والترمذي وصححه الألباني",
+        repeat: 3,
+        repeatText: "ثَلَاثُ مَرَّاتٍ"
+      },
+      {
+        id: 3,
+        title: "أمسينا وأمسى الملك لله",
+        text: "«أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَذِهِ اللَّيْلَةِ وَخَيْرَ مَا بَعْدَهَا، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَذِهِ اللَّيْلَةِ وَشَرِّ مَا بَعْدَهَا، رَبِّ أَعُوذُ بِكَ مِنَ الْكَسَلِ وَسُوءِ الْكِبَرِ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ»",
+        virtue: "سؤال خير الليلة واستعاذة من شرورها والكسل وعذاب النار والقبر.",
+        source: "أخرجه مسلم في صحيحه (٤/٢٠٨٨ برقم ٢٧٢٣)",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 4,
+        title: "اللهم بك أمسينا",
+        text: "«اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ وَإِلَيْكَ الْمَصِيرُ»",
+        virtue: "إقرار بتوحيد الله وتصريفه للكون وإليه المصير والرجعى.",
+        source: "أخرجه الترمذي وصححه الألباني في صحيح الترمذي (٣/١٤٢)",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 5,
+        title: "سيد الاستغفار",
+        text: "«اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ»",
+        virtue: "من قالها موقناً بها حين يمسي فمات من ليلته دخل الجنة.",
+        source: "أخرجه البخاري في صحيحه (٧/١٥٠ برقم ٦٣٠٦)",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 6,
+        title: "اللهم إني أمسيت أشهدك",
+        text: "«اللَّهُمَّ إِنِّي أَمْسَيْتُ أُشْهِدُكَ، وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلَائِكَتَكَ، وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لَا إِلَهَ إِلَّا أَنْتَ وَحْدَكَ لَا شَرِيكَ لَكَ، وَأَنَّ مُحَمَّداً عَبْدُكَ وَرَسُولُكَ»",
+        virtue: "من قالها أربع مرات حين يمسي أعتقه الله من النار في ليلته.",
+        source: "أخرجه أبو داود (٤/٣١٧) وحسنه الألباني",
+        repeat: 4,
+        repeatText: "أَرْبَعُ مَرَّاتٍ"
+      },
+      {
+        id: 7,
+        title: "اللهم ما أمسى بي من نعمة",
+        text: "«اللَّهُمَّ مَا أَمْسَى بِي مِنْ نِعْمَةٍ أَوْ بِأَحَدٍ مِنْ خَلْقِكَ فَمِنْكَ وَحْدَكَ لَا شَرِيكَ لَكَ، فَلَكَ الْحَمْدُ وَلَكَ الشُّكْرُ»",
+        virtue: "من قالها حين يمسي فقد أدى شكر ليلته.",
+        source: "أخرجه أبو داود وابن حبان والنسائي",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 8,
+        title: "اللهم عافني في بدني",
+        text: "«اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي، لَا إِلَهَ إِلَّا أَنْتَ. اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْكُفْرِ، وَالْفَقْرِ، وَأَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، لَا إِلَهَ إِلَّا أَنْتَ»",
+        virtue: "سؤال العافية التامة ودفع البلاء والفقر وعذاب القبر.",
+        source: "أخرجه أبو داود وأحمد وحسنه الألباني",
+        repeat: 3,
+        repeatText: "ثَلَاثُ مَرَّاتٍ"
+      },
+      {
+        id: 9,
+        title: "حسبي الله لا إله إلا هو",
+        text: "«حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ»",
+        virtue: "من قالها سبع مرات كفاه الله ما أهمه من أمر الدنيا والآخرة.",
+        source: "أخرجه ابن السني وأبو داود موقوفاً",
+        repeat: 7,
+        repeatText: "سَبْعُ مَرَّاتٍ"
+      },
+      {
+        id: 10,
+        title: "اللهم إني أسألك العفو والعافية",
+        text: "«اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ: فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي، اللَّهُمَّ اسْتُرْ عَوْرَاتِي، وَآمِنْ رَوْعَاتِي، اللَّهُمَّ احْفَظْنِي مِنْ بَيْنِ يَدَيَّ، وَمِنْ خَلْفِي، وَعَنْ يَمِينِي، وَعَنْ شِمَالِي، وَمِنْ فَوْقِي، وَأَعُوذُ بِعَظَمَتِكَ أَنْ أُغْتَالَ مِنْ تَحْتِي»",
+        virtue: "حفظ تام من جميع الجهات ودعاء جامع لا يُترك.",
+        source: "أخرجه أبو داود وابن ماجه وصححه الألباني",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 11,
+        title: "اللهم عالم الغيب والشهادة",
+        text: "«اللَّهُمَّ عَالِمَ الْغَيْبِ وَالشَّهَادَةِ فَاطِرَ السَّماوَاتِ وَالْأَرْضِ، رَبَّ كُلِّ شَيْءٍ وَمَلِيكَهُ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا أَنْتَ، أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي، وَمِنْ شَرِّ الشَّيْطَانِ وَشِرْكِهِ، وَأَنْ أَقْتَرِفَ عَلَى نَفْسِي سُوءاً، أَوْ أَجُرَّهُ إِلَى مُسْلِمٍ»",
+        virtue: "حفظ من وساوس الشيطان والشِرْك والآثام.",
+        source: "أخرجه الترمذي وأبو داود",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 12,
+        title: "بسم الله الذي لا يضر مع اسمه شيء",
+        text: "«بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ»",
+        virtue: "من قالها ثلاثاً لم يضره شيء ولم تفجأه فاجعة في ليلته.",
+        source: "أخرجه الترمذي وأبو داود وابن ماجه",
+        repeat: 3,
+        repeatText: "ثَلَاثُ مَرَّاتٍ"
+      },
+      {
+        id: 13,
+        title: "رضيت بالله رباً",
+        text: "«رَضِيتُ بِاللَّهِ رَبَّاً، وَبِالْإِسْلَامِ دِيناً، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيَّاً»",
+        virtue: "كان حقاً على الله أن يرضيه يوم القيامة.",
+        source: "أخرجه أحمد وأبو داود والنسائي",
+        repeat: 3,
+        repeatText: "ثَلَاثُ مَرَّاتٍ"
+      },
+      {
+        id: 14,
+        title: "يا حي يا قيوم برحمتك أستغيث",
+        text: "«يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ أَصْلِحْ لِي شَأْنِي كُلَّهُ وَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ»",
+        virtue: "استغاثة وتفويض كامل لله تعالى في كل الأمور.",
+        source: "أخرجه الحاكم وصححه الألباني",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 15,
+        title: "أمسينا وأمسى الملك لله رب العالمين",
+        text: "«أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ رَبِّ الْعَالَمِينَ، اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ هَذِهِ اللَّيْلَةِ: فَتْحَهَا، وَنَصْرَهَا، وَنُورَهَا، وَبَرَكَتَهَا، وَهُدَاهَا، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِيهَا وَشَرِّ مَا بَعْدَهَا»",
+        virtue: "طلب خيرات وبركات الليلة والتعوذ من شرها وشر ما بعدها.",
+        source: "أخرجه أبو داود وحسن إسناده",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 16,
+        title: "أمسينا على فطرة الإسلام",
+        text: "«أَمْسَيْنَا عَلَى فِطْرَةِ الْإِسْلَامِ، وَعَلَى كَلِمَةِ الْإِخْلَاصِ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، وَعَلَى مِلَّةِ أَبِينَا إِبْرَاهِيمَ، حَنِيفاً مُسْلِماً وَمَا كَانَ مِنَ الْمُشْرِكِينَ»",
+        virtue: "تجديد التوحيد والاستسلام لله على هدي النبي ﷺ وإبراهيم عليه السلام.",
+        source: "أخرجه أحمد وابن السني وصححه الألباني",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 17,
+        title: "سبحان الله وبحمده",
+        text: "«سُبْحَانَ اللَّهِ وَبِحَمْدِهِ»",
+        virtue: "من قالها مائة مرة لم يأت أحد يوم القيامة بأفضل مما جاء به وحطت خطاياه.",
+        source: "أخرجه مسلم (٤/٢٠٧١)",
+        repeat: 100,
+        repeatText: "مَائَةُ مَرَّةٍ"
+      },
+      {
+        id: 18,
+        title: "التهليل (عشر مرات)",
+        text: "«لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ»",
+        virtue: "كانت له عدل أربع رقاب من ولد إسماعيل ومغفرة للذنوب.",
+        source: "أخرجه النسائي والترمذي وأبو داود",
+        repeat: 10,
+        repeatText: "عَشْرُ مَرَّاتٍ"
+      },
+      {
+        id: 19,
+        title: "التهليل (مائة مرة)",
+        text: "«لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ»",
+        virtue: "حرز من الشيطان ومائة حسنة ومحو مائة خطيئة.",
+        source: "أخرجه البخاري ومسلم",
+        repeat: 100,
+        repeatText: "مَائَةُ مَرَّةٍ"
+      },
+      {
+        id: 20,
+        title: "أعوذ بكلمات الله التامات من شر ما خلق",
+        text: "«أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ»",
+        virtue: "من قالها حين يمسي ثلاث مرات لم تضره حمة أو لدغة أو سوء في تلك الليلة.",
+        source: "أخرجه الترمذي (٣٦٠٤) ومسلم وأحمد وصححه الألباني",
+        repeat: 3,
+        repeatText: "ثَلَاثُ مَرَّاتٍ"
+      },
+      {
+        id: 21,
+        title: "الاستغفار والتوبة",
+        text: "«أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ»",
+        virtue: "ملازمة التوبة والاستغفار مائة مرة يومياً.",
+        source: "أخرجه البخاري ومسلم",
+        repeat: 100,
+        repeatText: "مَائَةُ مَرَّةٍ"
+      },
+      {
+        id: 22,
+        title: "خواتيم سورة البقرة",
+        text: "﴿آمَنَ الرَّسُولُ بِمَا أُنْزِلَ إِلَيْهِ مِنْ رَبِّهِ وَالْمُؤْمِنُونَ كُلٌّ آمَنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِنْ رُسُلِهِ وَقَالُوا سَمِعْنَا وَأَطَعْنَا غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ ۞ لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ رَبَّنَا لَا تُؤَاخِذْنَا إِنْ نَسِينَا أَوْ أَخْطَأْنَا رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِنْ قَبْلِنَا رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ﴾",
+        virtue: "من قرأ بهما في ليلة كَفَتَاهُ (أي كفتاه من شرور الإنس والجن وكل سوء).",
+        source: "أخرجه البخاري (٩/٤٧) ومسلم (١/٥٥٤)",
+        repeat: 1,
+        repeatText: "مَرَّةً وَاحِدَةً"
+      },
+      {
+        id: 23,
+        title: "الصلاة على النبي ﷺ",
+        text: "«اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ»",
+        virtue: "من صلى عليّ حين يصبح عشراً وحين يمسي عشراً أدركته شفاعتي يوم القيامة.",
+        source: "أخرجه الطبراني وحسنه الألباني",
+        repeat: 10,
+        repeatText: "عَشْرُ مَرَّاتٍ"
+      },
+      {
+        id: 24,
+        title: "سبحان الله وبحمده عدد خلقه",
+        text: "«سُبْحَانَ اللَّهِ وَبِحَمْدِهِ: عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ»",
+        virtue: "تسبيح جامع عظيم الأجر والمثوبة.",
+        source: "أخرجه مسلم (٤/٢٠٩٠)",
+        repeat: 3,
+        repeatText: "ثَلَاثُ مَرَّاتٍ"
+      }
+    ];
+
+    // ==================== STATE MANAGEMENT ====================
+    let currentCategory = 'morning'; // 'morning' or 'evening'
+    let currentIndex = 0;
+    let countsState = {
+      morning: morningAdhkar.map(d => d.repeat),
+      evening: eveningAdhkar.map(d => d.repeat)
+    };
+
+    let settings = {
+      fontSize: 20,
+      vibrate: true,
+      sound: true,
+      autoAdvance: true
+    };
+
+    // Load persisted state or start fresh daily session
+    try {
+      const savedSettings = localStorage.getItem('hisn_settings');
+      if (savedSettings) settings = { ...settings, ...JSON.parse(savedSettings) };
+
+      const savedDate = localStorage.getItem('hisn_session_date');
+      const todayStr = new Date().toISOString().slice(0, 10);
+
+      const savedCounts = localStorage.getItem('hisn_counts_v3');
+      if (savedCounts && savedDate === todayStr) {
+        const parsed = JSON.parse(savedCounts);
+        if (parsed.morning && parsed.morning.length === morningAdhkar.length &&
+            parsed.evening && parsed.evening.length === eveningAdhkar.length) {
+          countsState = parsed;
+        }
+      } else {
+        // Fresh start: all repetitions set to their default counts
+        countsState = {
+          morning: morningAdhkar.map(d => d.repeat),
+          evening: eveningAdhkar.map(d => d.repeat)
+        };
+        localStorage.setItem('hisn_session_date', todayStr);
+        localStorage.setItem('hisn_counts_v3', JSON.stringify(countsState));
+      }
+    } catch(e) {
+      console.warn('Storage unavailable', e);
+    }
+
+    // Audio Context for soft clicking sound
+    let audioCtx = null;
+    function playSoftClick() {
+      if (!settings.sound) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.04);
+        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.04);
+      } catch(e) {}
+    }
+
+    function playSuccessChime() {
+      if (!settings.sound) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+        osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08); // E5
+        osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.16); // G5
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.35);
+      } catch(e) {}
+    }
+
+    // Helper: Eastern Arabic Numerals
+    function toArabicNumerals(num) {
+      return num.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+    }
+
+    // DOM Elements
+    const homeView = document.getElementById('home-view');
+    const dhikrView = document.getElementById('dhikr-view');
+    const btnSelectMorning = document.getElementById('btn-select-morning');
+    const btnSelectEvening = document.getElementById('btn-select-evening');
+    const backToHomeBtn = document.getElementById('back-to-home-btn');
+    const headerCategoryName = document.getElementById('header-category-name');
+
+    const homeMorningBar = document.getElementById('home-morning-bar');
+    const homeMorningText = document.getElementById('home-morning-text');
+    const homeEveningBar = document.getElementById('home-evening-bar');
+    const homeEveningText = document.getElementById('home-evening-text');
+
+    const dhikrTextEl = document.getElementById('dhikr-text');
+    const dhikrVirtueEl = document.getElementById('dhikr-virtue');
+    const dhikrSourceEl = document.getElementById('dhikr-source');
+    const categoryTitleEl = document.getElementById('category-title');
+    const timingNoteEl = document.getElementById('timing-note');
+    const dhikrIndexTextEl = document.getElementById('dhikr-index-text');
+    const targetCountTextEl = document.getElementById('target-count-text');
+    const counterValueEl = document.getElementById('counter-value');
+    const counterBtn = document.getElementById('counter-btn');
+    const counterHintEl = document.getElementById('counter-hint');
+    const progressCircleEl = document.getElementById('progress-circle');
+    const overallProgressBar = document.getElementById('overall-progress-bar');
+    const overallProgressText = document.getElementById('overall-progress-text');
+
+    const nextBtn = document.getElementById('next-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const autoAdvanceToggle = document.getElementById('auto-advance-toggle');
+    const autoAdvanceLabel = document.getElementById('auto-advance-label');
+
+    const mainHeader = document.getElementById('main-header');
+    const mainFooter = document.getElementById('main-footer');
+
+    const circumference = 276.4; // 2 * pi * 44
+
+    function getActiveDataset() {
+      return currentCategory === 'morning' ? morningAdhkar : eveningAdhkar;
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem('hisn_counts_v3', JSON.stringify(countsState));
+        localStorage.setItem('hisn_session_date', new Date().toISOString().slice(0, 10));
+        localStorage.setItem('hisn_settings', JSON.stringify(settings));
+      } catch(e) {}
+    }
+
+    // Update Progress on Home Screen Cards
+    function updateHomeProgress() {
+      const mCompleted = countsState.morning.filter(c => c === 0).length;
+      const mTotal = morningAdhkar.length;
+      const mPercent = Math.round((mCompleted / mTotal) * 100);
+      if (homeMorningBar) homeMorningBar.style.width = `${mPercent}%`;
+      if (homeMorningText) homeMorningText.textContent = `${toArabicNumerals(mCompleted)} / ${toArabicNumerals(mTotal)}`;
+
+      const eCompleted = countsState.evening.filter(c => c === 0).length;
+      const eTotal = eveningAdhkar.length;
+      const ePercent = Math.round((eCompleted / eTotal) * 100);
+      if (homeEveningBar) homeEveningBar.style.width = `${ePercent}%`;
+      if (homeEveningText) homeEveningText.textContent = `${toArabicNumerals(eCompleted)} / ${toArabicNumerals(eTotal)}`;
+    }
+
+    // Switch between Main Home View and Dhikr Reading View
+    function openDhikrView(cat, idx = 0) {
+      currentCategory = cat;
+      currentIndex = idx;
+      
+      headerCategoryName.textContent = cat === 'morning' ? 'أَذْكارُ الصَّباحِ' : 'أَذْكارُ المَساءِ';
+      
+      homeView.classList.add('hidden');
+      dhikrView.classList.remove('hidden');
+      dhikrView.classList.add('flex');
+
+      updateUI(true);
+      window.scrollTo(0, 0);
+    }
+
+    function openHomeView() {
+      dhikrView.classList.add('hidden');
+      dhikrView.classList.remove('flex');
+      homeView.classList.remove('hidden');
+      updateHomeProgress();
+      window.scrollTo(0, 0);
+    }
+
+    // Update UI Elements
+    function updateUI(triggerAnimation = false) {
+      const dataset = getActiveDataset();
+      const currentDhikr = dataset[currentIndex];
+      const remainingCount = countsState[currentCategory][currentIndex];
+
+      if (triggerAnimation) {
+        document.getElementById('dhikr-container').classList.remove('fade-enter');
+        void document.getElementById('dhikr-container').offsetWidth;
+        document.getElementById('dhikr-container').classList.add('fade-enter');
+
+        document.getElementById('sanad-container').classList.remove('fade-enter');
+        void document.getElementById('sanad-container').offsetWidth;
+        document.getElementById('sanad-container').classList.add('fade-enter');
+      }
+
+      // Title & Text
+      headerCategoryName.textContent = currentCategory === 'morning' ? 'أَذْكارُ الصَّباحِ' : 'أَذْكارُ المَساءِ';
+      categoryTitleEl.textContent = currentCategory === 'morning' ? 'أَذْكارُ الصَّباحِ' : 'أَذْكارُ المَساءِ';
+      timingNoteEl.textContent = currentCategory === 'morning' ? 'تقال بعد صلاة الفجر إلى شروق الشمس' : 'تقال بعد صلاة العصر إلى غروب الشمس وما بعده';
+
+      // Format text with clean line spacing between surahs/paragraphs
+      if (currentDhikr.text.includes('\n\n')) {
+        const surahBlocks = currentDhikr.text.split('\n\n');
+        dhikrTextEl.innerHTML = surahBlocks.map((block, index) => {
+          const lines = block.split('\n');
+          let formattedContent = '';
+          if (lines.length > 1 && lines[0].includes('بِسْمِ اللَّهِ')) {
+            formattedContent = `<div class="text-amber-900 font-bold mb-1.5 opacity-90">${lines[0]}</div><div>${lines.slice(1).join('<br>')}</div>`;
+          } else {
+            formattedContent = `<div>${block.replace(/\n/g, '<br>')}</div>`;
+          }
+          return `<div class="my-3.5 ${index > 0 ? 'pt-3.5 border-t border-amber-900/20' : ''}">${formattedContent}</div>`;
+        }).join('');
+      } else if (currentDhikr.text.includes('\n')) {
+        dhikrTextEl.innerHTML = currentDhikr.text.replace(/\n/g, '<br>');
+      } else {
+        dhikrTextEl.textContent = currentDhikr.text;
+      }
+      dhikrTextEl.style.fontSize = `${settings.fontSize}px`;
+
+      dhikrVirtueEl.textContent = currentDhikr.virtue;
+      dhikrSourceEl.textContent = currentDhikr.source;
+      targetCountTextEl.textContent = currentDhikr.repeatText;
+      dhikrIndexTextEl.textContent = `الذِّكْرُ ${toArabicNumerals(currentIndex + 1)} مِنْ ${toArabicNumerals(dataset.length)}`;
+
+      // Counter Circle & Value & Card Mini Counter
+      const cardMiniCounter = document.getElementById('card-mini-counter');
+      const cardMiniCountVal = document.getElementById('card-mini-count-val');
+
+      if (remainingCount === 0) {
+        counterValueEl.innerHTML = '<i data-lucide="check" class="w-8 h-8 text-emerald-700 stroke-[3]"></i>';
+        counterHintEl.textContent = 'تم إكمال الذكر ✓';
+        counterHintEl.className = 'text-[11px] font-sans text-emerald-300 mt-1 font-bold';
+        
+        if (cardMiniCounter && cardMiniCountVal) {
+          cardMiniCounter.className = 'pointer-events-auto px-2.5 py-0.5 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-800 font-bold text-xs flex items-center gap-1 shadow-sm';
+          cardMiniCountVal.textContent = '✓ تم';
+        }
+      } else {
+        counterValueEl.textContent = toArabicNumerals(remainingCount);
+        counterHintEl.textContent = 'انقر للتسبيح';
+        counterHintEl.className = 'text-[11px] font-sans text-amber-200/90 mt-1 font-medium tracking-wide';
+
+        if (cardMiniCounter && cardMiniCountVal) {
+          cardMiniCounter.className = 'pointer-events-auto px-2.5 py-0.5 rounded-full bg-amber-900/10 border border-amber-900/20 text-amber-900 font-bold text-xs flex items-center gap-1 shadow-sm';
+          cardMiniCountVal.textContent = toArabicNumerals(remainingCount);
+        }
+      }
+
+      const progress = (currentDhikr.repeat - remainingCount) / currentDhikr.repeat;
+      const offset = circumference - (progress * circumference);
+      progressCircleEl.style.strokeDashoffset = offset;
+      progressCircleEl.style.stroke = remainingCount === 0 ? '#10b981' : '#9A1B22';
+
+      // Overall Progress Calculation
+      const completedCount = countsState[currentCategory].filter(c => c === 0).length;
+      const percent = Math.round((completedCount / dataset.length) * 100);
+      overallProgressBar.style.width = `${percent}%`;
+      overallProgressText.textContent = `${toArabicNumerals(completedCount)}/${toArabicNumerals(dataset.length)}`;
+
+      // Prev / Next button state
+      prevBtn.style.opacity = currentIndex === 0 ? '0.4' : '1';
+      nextBtn.style.opacity = currentIndex === dataset.length - 1 ? '0.4' : '1';
+
+      updateHomeProgress();
+      lucide.createIcons();
+      saveState();
+    }
+
+    // Step Counter Logic
+    function handleCountClick() {
+      const dataset = getActiveDataset();
+      const currentRepeat = countsState[currentCategory][currentIndex];
+
+      if (currentRepeat > 0) {
+        countsState[currentCategory][currentIndex]--;
+        
+        if (settings.vibrate && navigator.vibrate) {
+          navigator.vibrate(25);
+        }
+        playSoftClick();
+
+        // If completed just now
+        if (countsState[currentCategory][currentIndex] === 0) {
+          counterBtn.classList.add('pulse-success');
+          setTimeout(() => counterBtn.classList.remove('pulse-success'), 450);
+          playSuccessChime();
+
+          if (settings.autoAdvance && currentIndex < dataset.length - 1) {
+            setTimeout(() => {
+              currentIndex++;
+              updateUI(true);
+            }, 380);
+          }
+        }
+      } else {
+        // Already completed: advance or wrap
+        if (currentIndex < dataset.length - 1) {
+          currentIndex++;
+          updateUI(true);
+        }
+      }
+
+      updateUI();
+    }
+
+    // Event Listeners for Home Selection
+    btnSelectMorning.addEventListener('click', () => openDhikrView('morning', 0));
+    btnSelectEvening.addEventListener('click', () => openDhikrView('evening', 0));
+    backToHomeBtn.addEventListener('click', openHomeView);
+
+    document.getElementById('home-open-index').addEventListener('click', openIndex);
+    document.getElementById('home-open-settings').addEventListener('click', openSettings);
+    document.getElementById('home-share-app').addEventListener('click', () => {
+      const shareText = 'تطبيق حصن المسلم - أذكار الصباح والمساء المأثورة بتصميم تفاعلي مميز.';
+      if (navigator.share) {
+        navigator.share({ title: 'حصن المسلم', text: shareText }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(shareText).then(() => showToast('تم نسخ الرابط والمعلومات ✓'));
+      }
+    });
+    document.getElementById('home-reset-all').addEventListener('click', () => {
+      if (confirm('هل تريد إعادة تصفير عدادات أذكار الصباح والمساء بالكامل؟')) {
+        countsState.morning = morningAdhkar.map(d => d.repeat);
+        countsState.evening = eveningAdhkar.map(d => d.repeat);
+        saveState();
+        updateHomeProgress();
+        showToast('تمت إعادة تصفير جميع العدادات');
+      }
+    });
+
+    // Event Listeners
+    counterBtn.addEventListener('click', handleCountClick);
+
+    // Click anywhere on Dhikr Card / Text Area for Tasbih
+    const dhikrCardTouch = document.getElementById('dhikr-card-touch');
+    if (dhikrCardTouch) {
+      dhikrCardTouch.addEventListener('click', (e) => {
+        // Prevent trigger if clicking on copy button or other interactive controls inside
+        if (e.target.closest('#copy-text-btn')) return;
+        handleCountClick();
+      });
+    }
+
+    nextBtn.addEventListener('click', () => {
+      const dataset = getActiveDataset();
+      if (currentIndex < dataset.length - 1) {
+        currentIndex++;
+        updateUI(true);
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateUI(true);
+      }
+    });
+
+    // Reset current category
+    document.getElementById('reset-category-btn').addEventListener('click', () => {
+      const dataset = getActiveDataset();
+      if (confirm('هل تريد إعادة تعيين عدادات جميع الأذكار في هذا القسم؟')) {
+        countsState[currentCategory] = dataset.map(d => d.repeat);
+        updateUI();
+        showToast('تمت إعادة ضبط العدادات');
+      }
+    });
+
+    // Share & Copy
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.style.opacity = '1';
+      setTimeout(() => { toast.style.opacity = '0'; }, 2200);
+    }
+
+    document.getElementById('copy-text-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      const dataset = getActiveDataset();
+      const currentDhikr = dataset[currentIndex];
+      const textToCopy = `${currentDhikr.text}\n\n[${currentDhikr.virtue}] - ${currentDhikr.source}\n(تطبيق حصن المسلم)`;
+      navigator.clipboard.writeText(textToCopy).then(() => showToast('تم نسخ نص الذكر بنجاح ✓'));
+    });
+
+    document.getElementById('share-dhikr-btn').addEventListener('click', () => {
+      const dataset = getActiveDataset();
+      const currentDhikr = dataset[currentIndex];
+      const shareData = {
+        title: `حصن المسلم - ${currentDhikr.title}`,
+        text: `${currentDhikr.text}\n\nفضل الذكر: ${currentDhikr.virtue}\nالتخريج: ${currentDhikr.source}`,
+      };
+      if (navigator.share) {
+        navigator.share(shareData).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(shareData.text).then(() => showToast('تم نسخ نص الذكر للمشاركة ✓'));
+      }
+    });
+
+    // Auto Advance Setting Toggle
+    autoAdvanceToggle.addEventListener('click', () => {
+      settings.autoAdvance = !settings.autoAdvance;
+      autoAdvanceLabel.textContent = settings.autoAdvance ? 'الانتقال التلقائي: مفعّل' : 'الانتقال التلقائي: معطّل';
+      document.getElementById('auto-advance-setting').checked = settings.autoAdvance;
+      saveState();
+      showToast(settings.autoAdvance ? 'تم تفعيل الانتقال التلقائي' : 'تم تعطيل الانتقال التلقائي');
+    });
+
+    // ==================== DRAWER INDEX LOGIC ====================
+    const indexModal = document.getElementById('index-modal');
+    const indexDrawer = document.getElementById('index-drawer');
+    const openIndexBtn = document.getElementById('open-index-btn');
+    const closeIndexBtn = document.getElementById('close-index-btn');
+    const indexListContainer = document.getElementById('index-list-container');
+    const searchInput = document.getElementById('search-input');
+
+    function openIndex() {
+      renderIndexList();
+      indexModal.classList.remove('hidden');
+      indexModal.classList.add('flex');
+      setTimeout(() => indexDrawer.classList.remove('translate-x-full'), 10);
+    }
+
+    function closeIndex() {
+      indexDrawer.classList.add('translate-x-full');
+      setTimeout(() => {
+        indexModal.classList.add('hidden');
+        indexModal.classList.remove('flex');
+      }, 300);
+    }
+
+    openIndexBtn.addEventListener('click', openIndex);
+    closeIndexBtn.addEventListener('click', closeIndex);
+    indexModal.addEventListener('click', (e) => {
+      if (e.target === indexModal) closeIndex();
+    });
+
+    function renderIndexList(query = '') {
+      const dataset = getActiveDataset();
+      indexListContainer.innerHTML = '';
+
+      dataset.forEach((dhikr, idx) => {
+        if (query && !dhikr.title.includes(query) && !dhikr.text.includes(query) && !dhikr.virtue.includes(query)) {
+          return;
+        }
+
+        const isCompleted = countsState[currentCategory][idx] === 0;
+        const isCurrent = idx === currentIndex;
+
+        const item = document.createElement('div');
+        item.className = `p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between gap-3 ${
+          isCurrent ? 'bg-amber-100/90 border-amber-600 shadow-sm' : 'bg-white/80 border-stone-200 hover:bg-white'
+        }`;
+
+        item.innerHTML = `
+          <div class="flex items-center gap-3 flex-1 min-w-0">
+            <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold font-naskh ${
+              isCompleted ? 'bg-emerald-600 text-white' : 'bg-amber-900 text-amber-100'
+            }">
+              ${isCompleted ? '✓' : toArabicNumerals(idx + 1)}
+            </span>
+            <div class="truncate">
+              <div class="font-bold text-sm text-stone-900 truncate">${dhikr.title}</div>
+              <div class="text-xs text-stone-500 truncate">${dhikr.repeatText}</div>
+            </div>
+          </div>
+          <span class="text-xs font-mono font-bold ${isCompleted ? 'text-emerald-700' : 'text-amber-800'}">
+            ${toArabicNumerals(countsState[currentCategory][idx])}/${toArabicNumerals(dhikr.repeat)}
+          </span>
+        `;
+
+        item.addEventListener('click', () => {
+          openDhikrView(currentCategory, idx);
+          closeIndex();
+        });
+
+        indexListContainer.appendChild(item);
+      });
+    }
+
+    searchInput.addEventListener('input', (e) => {
+      renderIndexList(e.target.value.trim());
+    });
+
+    // ==================== SETTINGS MODAL LOGIC ====================
+    const settingsModal = document.getElementById('settings-modal');
+    const openSettingsBtn = document.getElementById('open-settings-btn');
+    const closeSettingsBtn = document.getElementById('close-settings-btn');
+    const saveSettingsBtn = document.getElementById('save-settings-btn');
+    const fontIncreaseBtn = document.getElementById('font-increase');
+    const fontDecreaseBtn = document.getElementById('font-decrease');
+    const fontSizeLabel = document.getElementById('font-size-label');
+    const vibrateToggle = document.getElementById('vibrate-toggle');
+    const soundToggle = document.getElementById('sound-toggle');
+    const autoAdvanceSetting = document.getElementById('auto-advance-setting');
+
+    function openSettings() {
+      fontSizeLabel.textContent = `${settings.fontSize}px`;
+      vibrateToggle.checked = settings.vibrate;
+      soundToggle.checked = settings.sound;
+      autoAdvanceSetting.checked = settings.autoAdvance;
+
+      settingsModal.classList.remove('hidden');
+      settingsModal.classList.add('flex');
+    }
+
+    function closeSettings() {
+      settingsModal.classList.add('hidden');
+      settingsModal.classList.remove('flex');
+    }
+
+    openSettingsBtn.addEventListener('click', openSettings);
+    closeSettingsBtn.addEventListener('click', closeSettings);
+    saveSettingsBtn.addEventListener('click', () => {
+      settings.vibrate = vibrateToggle.checked;
+      settings.sound = soundToggle.checked;
+      settings.autoAdvance = autoAdvanceSetting.checked;
+      autoAdvanceLabel.textContent = settings.autoAdvance ? 'الانتقال التلقائي: مفعّل' : 'الانتقال التلقائي: معطّل';
+      saveState();
+      updateUI();
+      closeSettings();
+    });
+
+    fontIncreaseBtn.addEventListener('click', () => {
+      if (settings.fontSize < 32) {
+        settings.fontSize += 2;
+        fontSizeLabel.textContent = `${settings.fontSize}px`;
+        dhikrTextEl.style.fontSize = `${settings.fontSize}px`;
+      }
+    });
+
+    fontDecreaseBtn.addEventListener('click', () => {
+      if (settings.fontSize > 16) {
+        settings.fontSize -= 2;
+        fontSizeLabel.textContent = `${settings.fontSize}px`;
+        dhikrTextEl.style.fontSize = `${settings.fontSize}px`;
+      }
+    });
+
+    // Keyboard Shortcuts (Space to count, Left/Right arrows to navigate)
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT') return;
+      if (e.code === 'Space') {
+        e.preventDefault();
+        handleCountClick();
+      } else if (e.code === 'ArrowLeft') {
+        nextBtn.click();
+      } else if (e.code === 'ArrowRight') {
+        prevBtn.click();
+      }
+    });
+
+    // Initialize UI on Load
+    updateHomeProgress();
+    updateUI();
+    lucide.createIcons();
+  </script>
+</body>
+</html>
