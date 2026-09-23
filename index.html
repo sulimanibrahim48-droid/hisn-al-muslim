@@ -211,7 +211,7 @@
               <p class="text-xs text-stone-500 font-sans mt-0.5">بعد العصر إلى ما بعد الغروب</p>
             </div>
           </div>
-          <span class="px-2.5 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 font-bold text-xs">٢٤ ذكراً</span>
+          <span class="px-2.5 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 font-bold text-xs">٢٣ ذكراً</span>
         </div>
 
         <!-- Evening Progress Bar -->
@@ -219,7 +219,7 @@
           <div class="flex-1 bg-stone-200 h-2.5 rounded-full overflow-hidden border border-stone-300">
             <div id="home-evening-bar" class="h-full bg-gradient-to-l from-amber-700 to-maroon-900 transition-all duration-300" style="width: 0%"></div>
           </div>
-          <span id="home-evening-text" class="text-xs font-bold font-naskh text-amber-900">٠ / ٢٤</span>
+          <span id="home-evening-text" class="text-xs font-bold font-naskh text-amber-900">٠ / ٢٣</span>
           <div class="px-3.5 py-1.5 bg-gradient-to-r from-amber-700 to-maroon-900 text-amber-100 rounded-xl text-xs font-bold shadow-md flex items-center gap-1 group-hover:brightness-110">
             <span>ابدأ</span>
             <i data-lucide="chevron-left" class="w-4 h-4"></i>
@@ -1282,9 +1282,38 @@
     // Click anywhere on Dhikr Card / Text Area for Tasbih
     const dhikrCardTouch = document.getElementById('dhikr-card-touch');
     if (dhikrCardTouch) {
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let suppressCardClick = false;
+      dhikrCardTouch.style.touchAction = 'pan-y';
+
+      dhikrCardTouch.addEventListener('touchstart', (e) => {
+        const touch = e.changedTouches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+      }, { passive: true });
+
+      dhikrCardTouch.addEventListener('touchend', (e) => {
+        const touch = e.changedTouches[0];
+        const deltaX = touch.clientX - touchStartX;
+        const deltaY = touch.clientY - touchStartY;
+        const isHorizontalSwipe = Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2;
+
+        if (!isHorizontalSwipe) return;
+
+        suppressCardClick = true;
+        setTimeout(() => { suppressCardClick = false; }, 350);
+
+        if (deltaX < 0) {
+          nextBtn.click();
+        } else {
+          prevBtn.click();
+        }
+      }, { passive: true });
+
       dhikrCardTouch.addEventListener('click', (e) => {
         // Prevent trigger if clicking on copy button or other interactive controls inside
-        if (e.target.closest('#copy-text-btn')) return;
+        if (e.target.closest('#copy-text-btn') || suppressCardClick) return;
         handleCountClick();
       });
     }
